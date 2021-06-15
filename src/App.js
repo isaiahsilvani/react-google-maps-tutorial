@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import ReactMapGl, { Marker } from 'react-map-gl'
+import ReactMapGl, { Marker, Popup } from 'react-map-gl'
 import * as parkData from './data/skateboard-parks.json'
 import markerImg from './marker.png'
 import styled from '@emotion/styled'
@@ -47,6 +47,17 @@ function App() {
 
           </Marker>
         ))}
+
+        {selectedPark ? (
+          <Popup 
+            latitude={selectedPark.geometry.coordinates[1]}
+            longitude={selectedPark.geometry.coordinates[0]}
+          >
+            <div>
+              PARK
+            </div>
+          </Popup>
+        ) : null}
       </ReactMapGl>
     </div>
   );
@@ -64,5 +75,14 @@ export default App;
 // To use markets, first import from react-map-gl. Then import the data set. Lastly, map over them 
 // within the <Marker/> component. You must set a key (duh) and also specify the lon. and lat. of
 // the marker by using the dataset
+//* Map over Map Data
+//  Map over the map data in data folder. Doiii
 //* Marker Buttons
 // Couldn't you just do an onclick function to begin with?
+//* Set Market Data in State
+// Honestly, this is kind of self explainatory but it's good to
+// take note of this process for reference
+//* Popups
+// What's the point of markers if we can't do anything with it?? When someone clicks a marker, they should get a popup 
+// with the information about the park being displayed. Import Popup from the mapbox library, set a ternary expression
+// for when there is data present in state hook, and display the data within the Popup by using the state information
