@@ -10,11 +10,15 @@ function App() {
     width: '100vw',       // width of map
     height: '100vh'       // height of map
   })
+
   return (
     <div className="App">
       <ReactMapGl 
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        onViewportChange={(viewport) => {
+          setViewport(viewport)
+        }}
       >
         markers here
       </ReactMapGl>
@@ -23,3 +27,6 @@ function App() {
 }
 
 export default App;
+// Notes
+//* onViewportChange allows us to make the map draggable by inputting new viewport data whenever 
+//* user drags the map around. Otherwise, it's a static map
