@@ -1,6 +1,13 @@
 import React, {useState} from 'react'
 import ReactMapGl, { Marker } from 'react-map-gl'
 import * as parkData from './data/skateboard-parks.json'
+import markerImg from './marker.png'
+import styled from '@emotion/styled'
+
+const MarkerImg = styled.img`
+  width: 50px;
+  height: 50px;
+`
 
 function App() {
   // FIRST, we need some information on how to display the map. Then pass to ReactMap component
@@ -28,7 +35,7 @@ function App() {
             latitude={park.geometry.coordinates[1]}
             longitude={park.geometry.coordinates[0]}
           >
-            <button>YOLO</button>
+            <MarkerImg src={markerImg} alt="marker"/>
           </Marker>
         ))}
       </ReactMapGl>
