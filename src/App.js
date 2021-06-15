@@ -16,6 +16,7 @@ function App() {
       <ReactMapGl 
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        mapStyle="mapbox://styles/developersilvani/ckpykbwdm0ytz18p8q61jl5cx"
         onViewportChange={(viewport) => {
           setViewport(viewport)
         }}
@@ -27,6 +28,10 @@ function App() {
 }
 
 export default App;
-// Notes
-//* onViewportChange allows us to make the map draggable by inputting new viewport data whenever 
-//* user drags the map around. Otherwise, it's a static map
+//* Draggable Map
+// onViewportChange allows us to make the map draggable by inputting new viewport data whenever 
+// user drags the map around. Otherwise, it's a static map. Causes the map to re-render since
+// the state changes.
+//* Styled Map
+// You can change the styling of mapbox by going on mapbox.com/designer-maps or studio.mapbox.com
+// Then, set mapStyle prop and pass the style url from studio.mapbox
