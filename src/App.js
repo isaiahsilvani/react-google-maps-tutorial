@@ -54,7 +54,8 @@ function App() {
             longitude={selectedPark.geometry.coordinates[0]}
           >
             <div>
-              PARK
+              <h2>{selectedPark.properties.NAME}</h2>
+              <p>{selectedPark.properties.DESCRIPTIO}</p>
             </div>
           </Popup>
         ) : null}
@@ -86,3 +87,5 @@ export default App;
 // What's the point of markers if we can't do anything with it?? When someone clicks a marker, they should get a popup 
 // with the information about the park being displayed. Import Popup from the mapbox library, set a ternary expression
 // for when there is data present in state hook, and display the data within the Popup by using the state information
+//* Closing Popups
+// There is an X that is automatically displayed within the popup, but it doesn't close the popup. We need to specify that.
