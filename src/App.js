@@ -7,6 +7,9 @@ import styled from '@emotion/styled'
 const MarkerImg = styled.img`
   width: 50px;
   height: 50px;
+  &:hover{
+    cursor: help;
+  }
 `
 
 function App() {
@@ -18,6 +21,8 @@ function App() {
     width: '100vw',       // width of map
     height: '100vh'       // height of map
   })
+  // This is state that will keep track of which park you picked
+  const [selectedPark, setSelectedPark] = useState(null)
 
   return (
     <div className="App">
@@ -35,7 +40,11 @@ function App() {
             latitude={park.geometry.coordinates[1]}
             longitude={park.geometry.coordinates[0]}
           >
-            <MarkerImg src={markerImg} alt="marker"/>
+            <MarkerImg src={markerImg} alt="marker" onClick={(e) => {
+              e.preventDefault()
+              setSelectedPark(park)
+            }}/>
+
           </Marker>
         ))}
       </ReactMapGl>
@@ -55,3 +64,5 @@ export default App;
 // To use markets, first import from react-map-gl. Then import the data set. Lastly, map over them 
 // within the <Marker/> component. You must set a key (duh) and also specify the lon. and lat. of
 // the marker by using the dataset
+//* Marker Buttons
+// Couldn't you just do an onclick function to begin with?
