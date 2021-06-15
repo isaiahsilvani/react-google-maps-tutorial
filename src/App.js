@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react'
+import ReactMapGl from 'react-map-gl'
 
 function App() {
+  // FIRST, we need some information on how to display the map. Then pass to ReactMap component
+  const [viewport, setViewport] = useState({
+    latitude: 45.4211,  // set the default lat
+    longitude: -75.6903,  // set the default lon
+    zoom: 10,             // how far away do you want map to be
+    width: '100vw',       // width of map
+    height: '100vh'       // height of map
+  })
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ReactMapGl {...viewport}>
+        markers here
+      </ReactMapGl>
     </div>
   );
 }
