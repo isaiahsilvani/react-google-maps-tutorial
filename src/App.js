@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactMapGl, { Marker, Popup } from 'react-map-gl'
 import * as parkData from './data/skateboard-parks.json'
 import markerImg from './marker.png'
@@ -23,6 +23,15 @@ function App() {
   })
   // This is state that will keep track of which park you picked
   const [selectedPark, setSelectedPark] = useState(null)
+  // Add an event listener with theuseEffect. 
+  useEffect(() => {
+    const listener = (e) => {
+      if (e.key === "Escape") {
+        setSelectedPark(null)
+      }
+    }
+    window.addEventListener("keydown", listener)
+  }, [])
 
   return (
     <div className="App">
@@ -92,3 +101,5 @@ export default App;
 // for when there is data present in state hook, and display the data within the Popup by using the state information
 //* Closing Popups
 // There is an X that is automatically displayed within the popup, but it doesn't close the popup. We need to specify that.
+// There is a built in function with popup called onClose, just set the state back to null with that and the ternary expression
+// you made earlier will do it's job
