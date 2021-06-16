@@ -23,14 +23,22 @@ function App() {
   })
   // This is state that will keep track of which park you picked
   const [selectedPark, setSelectedPark] = useState(null)
-  // Add an event listener with theuseEffect. 
+  // Add an event listener with theuseEffect to Esc. key to clear popup
   useEffect(() => {
+    // Put the event in a variable so it can be referenced for later when cleanup time
     const listener = (e) => {
+      // When the key is escape
       if (e.key === "Escape") {
         setSelectedPark(null)
       }
     }
     window.addEventListener("keydown", listener)
+
+    // If this component is exited, clean up the event listener from the escape key
+    // so it's not used everywhere in the application. Use the effect cleanup function
+    return () => {
+      window.removeEventListener("keydown", listener)
+    }
   }, [])
 
   return (
@@ -103,3 +111,6 @@ export default App;
 // There is an X that is automatically displayed within the popup, but it doesn't close the popup. We need to specify that.
 // There is a built in function with popup called onClose, just set the state back to null with that and the ternary expression
 // you made earlier will do it's job
+//* Closing Popups with Escape key
+// You know the deal, the useEffect() runs once due to the ,[] we attach an event listener to the Escape key
+// and set the selectedPark state to null. Yay!
